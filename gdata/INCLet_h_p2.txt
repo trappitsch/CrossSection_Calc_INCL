@@ -1,0 +1,142 @@
+);
+      }
+      f->GetObject("et",tree);
+
+   }
+   Init(tree);
+}
+
+INCLet::~INCLet()
+{
+   if (!fChain) return;
+   delete fChain->GetCurrentFile();
+}
+
+Int_t INCLet::GetEntry(Long64_t entry)
+{
+// Read contents of entry.
+   if (!fChain) return 0;
+   return fChain->GetEntry(entry);
+}
+Long64_t INCLet::LoadTree(Long64_t entry)
+{
+// Set the environment to read one entry
+   if (!fChain) return -5;
+   Long64_t centry = fChain->LoadTree(entry);
+   if (centry < 0) return centry;
+   if (fChain->GetTreeNumber() != fCurrent) {
+      fCurrent = fChain->GetTreeNumber();
+      Notify();
+   }
+   return centry;
+}
+
+void INCLet::Init(TTree *tree)
+{
+   // The Init() function is called when the selector needs to initialize
+   // a new tree or chain. Typically here the branch addresses and branch
+   // pointers of the tree will be set.
+   // It is normally not necessary to make changes to the generated
+   // code, but the routine can be extended by the user if needed.
+   // Init() will be called many times when running on PROOF
+   // (once per file to be processed).
+
+   // Set object pointer
+   history = 0;
+   // Set branch addresses and branch pointers
+   if (!tree) return;
+   fChain = tree;
+   fCurrent = -1;
+   fChain->SetMakeClass(1);
+
+   fChain->SetBranchAddress("nParticles", &nParticles, &b_nParticles);
+   fChain->SetBranchAddress("A", A, &b_A);
+   fChain->SetBranchAddress("Z", Z, &b_Z);
+   fChain->SetBranchAddress("EKin", EKin, &b_EKin);
+   fChain->SetBranchAddress("px", px, &b_px);
+   fChain->SetBranchAddress("py", py, &b_py);
+   fChain->SetBranchAddress("pz", pz, &b_pz);
+   fChain->SetBranchAddress("theta", theta, &b_theta);
+   fChain->SetBranchAddress("phi", phi, &b_phi);
+   fChain->SetBranchAddress("origin", origin, &b_origin);
+   fChain->SetBranchAddress("history", &history, &b_history);
+   fChain->SetBranchAddress("nRemnants", &nRemnants, &b_nRemnants);
+   fChain->SetBranchAddress("projectileType", &projectileType, &b_projectileType);
+   fChain->SetBranchAddress("At", &At, &b_At);
+   fChain->SetBranchAddress("Zt", &Zt, &b_Zt);
+   fChain->SetBranchAddress("Ap", &Ap, &b_Ap);
+   fChain->SetBranchAddress("Zp", &Zp, &b_Zp);
+   fChain->SetBranchAddress("Ep", &Ep, &b_Ep);
+   fChain->SetBranchAddress("impactParameter", &impactParameter, &b_impactParameter);
+   fChain->SetBranchAddress("nCollisions", &nCollisions, &b_nCollisions);
+   fChain->SetBranchAddress("stoppingTime", &stoppingTime, &b_stoppingTime);
+   fChain->SetBranchAddress("EBalance", &EBalance, &b_EBalance);
+   fChain->SetBranchAddress("pLongBalance", &pLongBalance, &b_pLongBalance);
+   fChain->SetBranchAddress("pTransBalance", &pTransBalance, &b_pTransBalance);
+   fChain->SetBranchAddress("nCascadeParticles", &nCascadeParticles, &b_nCascadeParticles);
+   fChain->SetBranchAddress("transparent", &transparent, &b_transparent);
+   fChain->SetBranchAddress("forcedCompoundNucleus", &forcedCompoundNucleus, &b_forcedCompoundNucleus);
+   fChain->SetBranchAddress("nucleonAbsorption", &nucleonAbsorption, &b_nucleonAbsorption);
+   fChain->SetBranchAddress("pionAbsorption", &pionAbsorption, &b_pionAbsorption);
+   fChain->SetBranchAddress("nDecays", &nDecays, &b_nDecays);
+   fChain->SetBranchAddress("nBlockedCollisions", &nBlockedCollisions, &b_nBlockedCollisions);
+   fChain->SetBranchAddress("nBlockedDecays", &nBlockedDecays, &b_nBlockedDecays);
+   fChain->SetBranchAddress("effectiveImpactParameter", &effectiveImpactParameter, &b_effectiveImpactParameter);
+   fChain->SetBranchAddress("deltasInside", &deltasInside, &b_deltasInside);
+   fChain->SetBranchAddress("forcedDeltasInside", &forcedDeltasInside, &b_forcedDeltasInside);
+   fChain->SetBranchAddress("forcedDeltasOutside", &forcedDeltasOutside, &b_forcedDeltasOutside);
+   fChain->SetBranchAddress("clusterDecay", &clusterDecay, &b_clusterDecay);
+   fChain->SetBranchAddress("firstCollisionTime", &firstCollisionTime, &b_firstCollisionTime);
+   fChain->SetBranchAddress("firstCollisionXSec", &firstCollisionXSec, &b_firstCollisionXSec);
+   fChain->SetBranchAddress("firstCollisionSpectatorPosition", &firstCollisionSpectatorPosition, &b_firstCollisionSpectatorPosition);
+   fChain->SetBranchAddress("firstCollisionSpectatorMomentum", &firstCollisionSpectatorMomentum, &b_firstCollisionSpectatorMomentum);
+   fChain->SetBranchAddress("firstCollisionIsElastic", &firstCollisionIsElastic, &b_firstCollisionIsElastic);
+   fChain->SetBranchAddress("nReflectionAvatars", &nReflectionAvatars, &b_nReflectionAvatars);
+   fChain->SetBranchAddress("nCollisionAvatars", &nCollisionAvatars, &b_nCollisionAvatars);
+   fChain->SetBranchAddress("nDecayAvatars", &nDecayAvatars, &b_nDecayAvatars);
+   fChain->SetBranchAddress("nUnmergedSpectators", &nUnmergedSpectators, &b_nUnmergedSpectators);
+   fChain->SetBranchAddress("nEnergyViolationInteraction", &nEnergyViolationInteraction, &b_nEnergyViolationInteraction);
+   fChain->SetBranchAddress("event", &event, &b_event);
+   fChain->SetBranchAddress("emissionTime", emissionTime, &b_emissionTime);
+   fChain->SetBranchAddress("ARem", ARem, &b_ARem);
+   fChain->SetBranchAddress("ZRem", ZRem, &b_ZRem);
+   fChain->SetBranchAddress("EStarRem", EStarRem, &b_EStarRem);
+   fChain->SetBranchAddress("JRem", JRem, &b_JRem);
+   fChain->SetBranchAddress("EKinRem", EKinRem, &b_EKinRem);
+   fChain->SetBranchAddress("pxRem", pxRem, &b_pxRem);
+   fChain->SetBranchAddress("pyRem", pyRem, &b_pyRem);
+   fChain->SetBranchAddress("pzRem", pzRem, &b_pzRem);
+   fChain->SetBranchAddress("thetaRem", thetaRem, &b_thetaRem);
+   fChain->SetBranchAddress("phiRem", phiRem, &b_phiRem);
+   fChain->SetBranchAddress("jxRem", jxRem, &b_jxRem);
+   fChain->SetBranchAddress("jyRem", jyRem, &b_jyRem);
+   fChain->SetBranchAddress("jzRem", jzRem, &b_jzRem);
+   Notify();
+}
+
+Bool_t INCLet::Notify()
+{
+   // The Notify() function is called when a new file is opened. This
+   // can be either for a new TTree in a TChain or when when a new TTree
+   // is started when using PROOF. It is normally not necessary to make changes
+   // to the generated code, but the routine can be extended by the
+   // user if needed. The return value is currently not used.
+
+   return kTRUE;
+}
+
+void INCLet::Show(Long64_t entry)
+{
+// Print contents of entry.
+// If entry is not specified, print current entry
+   if (!fChain) return;
+   fChain->Show(entry);
+}
+Int_t INCLet::Cut(Long64_t entry)
+{
+// This function may be called from Loop.
+// returns  1 if entry is accepted.
+// returns -1 otherwise.
+   return 1;
+}
+#endif // #ifdef INCLet_cxx

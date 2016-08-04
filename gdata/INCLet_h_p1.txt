@@ -1,0 +1,176 @@
+//////////////////////////////////////////////////////////
+// This class has been automatically generated on
+// Mon Aug  1 16:43:23 2016 by ROOT version 6.06/06
+// from TTree et/INCL++ event data
+// found on file: INCL root files
+//////////////////////////////////////////////////////////
+
+#ifndef INCLet_h
+#define INCLet_h
+
+#include <TROOT.h>
+#include <TChain.h>
+#include <TFile.h>
+
+// Math
+#include <cmath>
+
+// Header file for the classes stored in the TTree if any.
+#include "vector"
+
+class INCLet {
+public :
+   TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+   Int_t           fCurrent; //!current Tree number in a TChain
+
+// Fixed size dimensions of array or collections stored in the TTree if any.
+
+   // Declaration of leaf types
+   Short_t         nParticles;
+   Short_t         A[15];   //[nParticles]
+   Short_t         Z[15];   //[nParticles]
+   Float_t         EKin[15];   //[nParticles]
+   Float_t         px[15];   //[nParticles]
+   Float_t         py[15];   //[nParticles]
+   Float_t         pz[15];   //[nParticles]
+   Float_t         theta[15];   //[nParticles]
+   Float_t         phi[15];   //[nParticles]
+   Short_t         origin[15];   //[nParticles]
+   vector<string>  *history;
+   Short_t         nRemnants;
+   Int_t           projectileType;
+   Short_t         At;
+   Short_t         Zt;
+   Short_t         Ap;
+   Short_t         Zp;
+   Float_t         Ep;
+   Float_t         impactParameter;
+   Int_t           nCollisions;
+   Float_t         stoppingTime;
+   Float_t         EBalance;
+   Float_t         pLongBalance;
+   Float_t         pTransBalance;
+   Short_t         nCascadeParticles;
+   Bool_t          transparent;
+   Bool_t          forcedCompoundNucleus;
+   Bool_t          nucleonAbsorption;
+   Bool_t          pionAbsorption;
+   Int_t           nDecays;
+   Int_t           nBlockedCollisions;
+   Int_t           nBlockedDecays;
+   Float_t         effectiveImpactParameter;
+   Bool_t          deltasInside;
+   Bool_t          forcedDeltasInside;
+   Bool_t          forcedDeltasOutside;
+   Bool_t          clusterDecay;
+   Float_t         firstCollisionTime;
+   Float_t         firstCollisionXSec;
+   Float_t         firstCollisionSpectatorPosition;
+   Float_t         firstCollisionSpectatorMomentum;
+   Bool_t          firstCollisionIsElastic;
+   Int_t           nReflectionAvatars;
+   Int_t           nCollisionAvatars;
+   Int_t           nDecayAvatars;
+   Int_t           nUnmergedSpectators;
+   Int_t           nEnergyViolationInteraction;
+   Int_t           event;
+   Float_t         emissionTime[15];   //[nParticles]
+   Short_t         ARem[1];   //[nRemnants]
+   Short_t         ZRem[1];   //[nRemnants]
+   Float_t         EStarRem[1];   //[nRemnants]
+   Float_t         JRem[1];   //[nRemnants]
+   Float_t         EKinRem[1];   //[nRemnants]
+   Float_t         pxRem[1];   //[nRemnants]
+   Float_t         pyRem[1];   //[nRemnants]
+   Float_t         pzRem[1];   //[nRemnants]
+   Float_t         thetaRem[1];   //[nRemnants]
+   Float_t         phiRem[1];   //[nRemnants]
+   Float_t         jxRem[1];   //[nRemnants]
+   Float_t         jyRem[1];   //[nRemnants]
+   Float_t         jzRem[1];   //[nRemnants]
+
+   // List of branches
+   TBranch        *b_nParticles;   //!
+   TBranch        *b_A;   //!
+   TBranch        *b_Z;   //!
+   TBranch        *b_EKin;   //!
+   TBranch        *b_px;   //!
+   TBranch        *b_py;   //!
+   TBranch        *b_pz;   //!
+   TBranch        *b_theta;   //!
+   TBranch        *b_phi;   //!
+   TBranch        *b_origin;   //!
+   TBranch        *b_history;   //!
+   TBranch        *b_nRemnants;   //!
+   TBranch        *b_projectileType;   //!
+   TBranch        *b_At;   //!
+   TBranch        *b_Zt;   //!
+   TBranch        *b_Ap;   //!
+   TBranch        *b_Zp;   //!
+   TBranch        *b_Ep;   //!
+   TBranch        *b_impactParameter;   //!
+   TBranch        *b_nCollisions;   //!
+   TBranch        *b_stoppingTime;   //!
+   TBranch        *b_EBalance;   //!
+   TBranch        *b_pLongBalance;   //!
+   TBranch        *b_pTransBalance;   //!
+   TBranch        *b_nCascadeParticles;   //!
+   TBranch        *b_transparent;   //!
+   TBranch        *b_forcedCompoundNucleus;   //!
+   TBranch        *b_nucleonAbsorption;   //!
+   TBranch        *b_pionAbsorption;   //!
+   TBranch        *b_nDecays;   //!
+   TBranch        *b_nBlockedCollisions;   //!
+   TBranch        *b_nBlockedDecays;   //!
+   TBranch        *b_effectiveImpactParameter;   //!
+   TBranch        *b_deltasInside;   //!
+   TBranch        *b_forcedDeltasInside;   //!
+   TBranch        *b_forcedDeltasOutside;   //!
+   TBranch        *b_clusterDecay;   //!
+   TBranch        *b_firstCollisionTime;   //!
+   TBranch        *b_firstCollisionXSec;   //!
+   TBranch        *b_firstCollisionSpectatorPosition;   //!
+   TBranch        *b_firstCollisionSpectatorMomentum;   //!
+   TBranch        *b_firstCollisionIsElastic;   //!
+   TBranch        *b_nReflectionAvatars;   //!
+   TBranch        *b_nCollisionAvatars;   //!
+   TBranch        *b_nDecayAvatars;   //!
+   TBranch        *b_nUnmergedSpectators;   //!
+   TBranch        *b_nEnergyViolationInteraction;   //!
+   TBranch        *b_event;   //!
+   TBranch        *b_emissionTime;   //!
+   TBranch        *b_ARem;   //!
+   TBranch        *b_ZRem;   //!
+   TBranch        *b_EStarRem;   //!
+   TBranch        *b_JRem;   //!
+   TBranch        *b_EKinRem;   //!
+   TBranch        *b_pxRem;   //!
+   TBranch        *b_pyRem;   //!
+   TBranch        *b_pzRem;   //!
+   TBranch        *b_thetaRem;   //!
+   TBranch        *b_phiRem;   //!
+   TBranch        *b_jxRem;   //!
+   TBranch        *b_jyRem;   //!
+   TBranch        *b_jzRem;   //!
+
+   INCLet(TTree *tree=0);
+   virtual ~INCLet();
+   virtual Int_t    Cut(Long64_t entry);
+   virtual Int_t    GetEntry(Long64_t entry);
+   virtual Long64_t LoadTree(Long64_t entry);
+   virtual void     Init(TTree *tree);
+   virtual void     Loop();
+   virtual Bool_t   Notify();
+   virtual void     Show(Long64_t entry = -1);
+
+};
+
+#endif
+
+#ifdef INCLet_cxx
+INCLet::INCLet(TTree *tree) : fChain(0) 
+{
+// if parameter tree is not specified (or zero), connect the file
+// used to generate this class and read the Tree.
+   
+   if (tree == 0) {
