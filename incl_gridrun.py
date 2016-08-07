@@ -162,15 +162,15 @@ class INCLGridRun:
 
         # Pathes setup
         # ### GEPARD ###
-        # self.pathtoincl = '/home/reto/opt/inclxx/'
-        # self.pathtoscript = '/home/reto/Documents/modeling/code/incl4.6.6_grid/'
-        # self.pathtosimulations = self.pathtoincl + 'simulations/'
-        # self.executable = 'INCLCascade'
-        # ### HOLZWURM ###
         self.pathtoincl = '/home/reto/opt/inclxx/'
-        self.pathtoscript = '/Users/reto/Documents/chicago_c3/modeling/code/incl4.6.6_grid/'
-        self.pathtosimulations = '/Users/reto/Documents/chicago_c3/modeling/modeldata/INCL_raw/'
+        self.pathtoscript = '/home/reto/Documents/modeling/code/incl4.6.6_grid/'
+        self.pathtosimulations = self.pathtoincl + 'simulations/'
         self.executable = 'INCLCascade'
+        # ### HOLZWURM ###
+        # self.pathtoincl = '/home/reto/opt/inclxx/'
+        # self.pathtoscript = '/Users/reto/Documents/chicago_c3/modeling/code/incl4.6.6_grid/'
+        # self.pathtosimulations = '/Users/reto/Documents/chicago_c3/modeling/modeldata/INCL_raw/'
+        # self.executable = 'INCLCascade'
 
         # load some important dictionaries
         self.d_isobar = isobardict()
@@ -236,9 +236,8 @@ class INCLGridRun:
         finder = False
         for it in range(len(targets)):
             for jt in range(len(targeteles)):
-                if targets[it] == targeteles[jt]:
+                if targets[it] == targeteles[jt].lower():
                     finder = True
-                else:
                     break
             if not finder:
                 try:
@@ -246,9 +245,9 @@ class INCLGridRun:
                     targetisos.append(self.d_isotopes[targets[it]][2])
                     targetisoabu.append(self.d_isotopes[targets[it]][3])
                 except KeyError:
-                    print 'Somehow the element ' + targets[it] + ' does not exist in self.d_isotopes dictionary. This' \
-                                                                 ' is not a user problem but a software issue...' \
-                                                                 ' good luck!'
+                    print 'Somehow, the element ' + targets[it] + ' does not exist in self.d_isotopes dictionary. ' \
+                                                                  ' This is not a user problem but a software' \
+                                                                  ' issue... good luck!'
 
         # now attach all these to self
         self.targeteles = targeteles
